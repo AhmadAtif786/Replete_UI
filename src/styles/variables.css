@@ -1,0 +1,15 @@
+body {
+  --wcm-z-index: 1300;
+}
+.btnDetails{
+  border-radius: 20px;
+border: 1px solid var(--Border-shadow-fill, rgba(0, 0, 0, 0.08));
+background: var(--Shadow-fill, #131313);
+color: var(--Light, #F3F3F3);
+font-family: Poppins;
+font-size: 14px;
+font-style: normal;
+font-weight: 500;
+line-height: 24px; /* 171.429% */
+letter-spacing: 0.15px;
+}
