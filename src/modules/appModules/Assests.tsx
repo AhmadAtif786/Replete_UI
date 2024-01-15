@@ -25,7 +25,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
   const valueTypographyVariant = downToSM ? 'main16' : 'main21';
   const symbolsTypographyVariant = downToSM ? 'secondary16' : 'secondary21';
   const trackEvent = useRootStore((store) => store.trackEvent);
-
+const data=[{title:"Arbitrum",},{title:"Ethereum",},{title:"Polygon",},{title:"Optimism",},{title:"Base",}]
   return (
     <TopInfoPanel
       titleComponent={
@@ -51,7 +51,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
       }
     >
       <Grid container spacing={4}>
-        <Grid item xs={12} lg={6} xl={6}>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
           <Box
             sx={{
               background:
@@ -62,7 +62,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
             <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
               <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
                 <Grid container spacing={4}>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -111,7 +111,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -153,15 +153,14 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                           <Trans> Health factor</Trans>
                         </Typography>
                         <Box>
-                          <Typography variant={'h4'}>
-                            <span className="grey-text">$</span> <Trans>0.0</Trans>
-                            <span>%</span>
+                          <Typography variant={'h4'} sx={{color:'rgba(69, 139, 84, 1)'}}>
+                           <Trans>&#8734;</Trans>
                           </Typography>
                         </Box>
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -214,7 +213,10 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 </Grid>
               </Box>
             </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
+            
+            {data.map(item=>{
+              return <>
+               <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
               <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
                 <Box
                   sx={{
@@ -236,75 +238,10 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                       sx={{
                         fontSize: '15px',
                         fontWeight: '400',
+                        ml:2
                       }}
                     >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span className="grey-text">$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
+                      <Trans>{item.title}</Trans>
                     </Typography>
                   </Box>
                   <Box sx={{ display: 'flex' }}>
@@ -346,138 +283,9 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 </Box>
               </Box>
             </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span>$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span>$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+              </>
+            })}
+            
             <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
               <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
                 <Box
@@ -541,7 +349,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
             </Box>
           </Box>
         </Grid>
-        <Grid item xs={12} lg={6} xl={6}>
+        <Grid item xs={12} lg={6} md={6} xl={6}>
           <Box
             sx={{
               background:
@@ -650,7 +458,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 <Box
                   sx={{ border: '1px solid rgba(235, 235, 239, 0.08)', borderRadius: '20px', p: 2 }}
                 >
-                  <Box  sx={{ display: 'flex',justifyContent:"space-between" }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex' }}>
                       <Box>
                         <Button
@@ -681,24 +489,199 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                         </Typography>
                       </Box>
                     </Box>
-                    
+
                     <Box>
-                    <Typography
-                      sx={{
-                        fontSize: '12px',
-                        fontWeight: '400',
-                      }}
-                      className="grey-text"
-                    >
-                      <Trans>$0.0k</Trans>
-                    </Typography>
-
-
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: '400',
+                        }}
+                        className="grey-text"
+                      >
+                        <Trans>$0.0k</Trans>
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
               </Box>
             </Box>
+            <Box sx={{ p: 2, width: '100%' }}>
+              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
+                <Box
+                  sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between ',
+                    p: 4,
+                    alignItems: 'center',
+                  }}
+                >
+                  <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ mt: 2 }}>
+                      <img
+                        src="/icons/tokens/1inch.svg"
+                        alt="avatar"
+                        height={'20px'}
+                        width={'20px'}
+                      />
+                    </Box>
+
+                    <Box sx={{ ml: 2 }}>
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: '400',
+                        }}
+                        className="grey-text"
+                      >
+                        <Trans>From</Trans>
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: '15px',
+                          fontWeight: '400',
+                        }}
+                      >
+                        <Trans>Arbitrum &#11206;</Trans>
+                      </Typography>
+                    </Box>
+                  </Box>
+
+                  <Box sx={{ display: 'flex' }}>
+                    <Box
+                      sx={{
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '9999px',
+                        border: '1px solid',
+                        background: 'rgba(243, 243, 243, 1)',
+                        mt: 1,
+                        mr: 2,
+                      }}
+                    />
+
+                    <Typography
+                      sx={{
+                        fontSize: '10px',
+                        fontWeight: '400',
+                        mr: 5,
+                      }}
+                    >
+                      <Trans>Conected</Trans>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{ borderRadius: '20px', p: 2 }}>
+              <Box sx={{  p: 6 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '12px',
+                      }}
+                      className="grey-text"
+                    >
+                      <Trans>Supply APY</Trans>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                      }}
+                    >
+                      <Trans>98</Trans>
+                      <span className="grey-text">%</span>
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between',mt:2 }}>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '12px',
+                      }}
+                      className="grey-text"
+                    >
+                      <Trans>Net APY</Trans>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                        color:'rgba(69, 139, 84, 1)'
+                      }}
+                    >
+                      <Trans>+1.06%</Trans>
+                      
+                    </Typography>
+                  </Box>
+                </Box><Box sx={{ display: 'flex', justifyContent: 'space-between',mt:2 }}>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '12px',
+                      }}
+                      className="grey-text"
+                    >
+                      <Trans>Collateralization</Trans>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                        color:'rgba(69, 139, 84, 1)'
+                      }}
+                    >
+                      <Trans>Enabled</Trans>
+                    </Typography>
+                  </Box>
+                </Box><Box sx={{ display: 'flex', justifyContent: 'space-between',mt:2 }}>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '12px',
+                      }}
+                      className="grey-text"
+                    >
+                      <Trans>Health factor</Trans>
+                    </Typography>
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                      }}
+                    >
+                      <Typography variant={'h4'} sx={{color:'rgba(69, 139, 84, 1)'}}>
+                           <Trans>&#8734;</Trans>
+                          </Typography>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{ borderRadius: '20px', p: 2 }}>
+            <Button
+          variant="outlined"
+          component={Link}
+          href={"/"}
+          fullWidth
+          
+        >
+          <Trans>Supply</Trans>
+        </Button></Box>
           </Box>
         </Grid>
       </Grid>
