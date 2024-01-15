@@ -9,6 +9,11 @@ import { GENERAL } from 'src/utils/mixPanelEvents';
 
 import { Link } from '../../components/primitives/Link';
 import { TopInfoPanelItem } from '../../components/TopInfoPanel/TopInfoPanelItem';
+import { TitleWithSearchBar } from 'src/components/TitleWithSearchBar';
+import { useAppDataContext } from 'src/hooks/app-data-provider/useAppDataProvider';
+import { getGhoReserve } from 'src/utils/ghoUtilities';
+import { TokenIcon } from 'src/components/primitives/TokenIcon';
+import { VariableAPYTooltip } from 'src/components/infoTooltips/VariableAPYTooltip';
 
 interface StakingHeaderProps {
   tvl?: string;
@@ -21,37 +26,52 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
   const upToLG = useMediaQuery(theme.breakpoints.up('lg'));
   const downToSM = useMediaQuery(theme.breakpoints.down('sm'));
   const downToXSM = useMediaQuery(theme.breakpoints.down('xsm'));
+  const { reserves, loading } = useAppDataContext();
 
-  const valueTypographyVariant = downToSM ? 'main16' : 'main21';
-  const symbolsTypographyVariant = downToSM ? 'secondary16' : 'secondary21';
-  const trackEvent = useRootStore((store) => store.trackEvent);
+  const ghoReserve = getGhoReserve(reserves);
 
+  const filteredData = reserves;
+  console.log('filteredData', filteredData);
+  const data = [
+    { title: 'Arbitrum', active: true },
+    { title: 'Ethereum' },
+    { title: 'Polygon' },
+    { title: 'Optimism' },
+    { title: 'Base' },
+  ];
   return (
-    <TopInfoPanel
-      titleComponent={
-        <Box mb={4}>
-          {/* <ChainAvailabilityText wrapperSx={{ mb: 4 }} chainId={ChainId.mainnet} /> */}
-          <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
-            <Typography variant={downToXSM ? 'h2' : upToLG ? 'display1' : 'h1'}>
-              <Trans>Your Assets</Trans>
-            </Typography>
-          </Box>
-
-          <Typography
-            sx={{
-              color: 'rgba(243, 243, 243, 0.80)',
-              maxWidth: '824px',
-              fontSize: '14px',
-              fontWeight: '400',
-            }}
-          >
-            <Trans>Compatible assets across your wallet.</Trans>{' '}
-          </Typography>
-        </Box>
-      }
-    >
+    <TopInfoPanel titleComponent={<></>}>
       <Grid container spacing={4}>
-        <Grid item xs={12} lg={6} xl={6}>
+        <Grid item xs={12} md={6} lg={6} xl={6}>
+          <Box mb={4}>
+            {/* <ChainAvailabilityText wrapperSx={{ mb: 4 }} chainId={ChainId.mainnet} /> */}
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
+              <Typography variant={downToXSM ? 'h2' : upToLG ? 'display1' : 'h1'}>
+                <Trans>Your Assets</Trans>
+              </Typography>
+            </Box>
+
+            <Typography
+              sx={{
+                color: 'rgba(243, 243, 243, 0.80)',
+                maxWidth: '824px',
+                fontSize: '14px',
+                fontWeight: '400',
+              }}
+            >
+              <Trans>Compatible assets across your wallet.</Trans>{' '}
+            </Typography>
+            <TitleWithSearchBar
+              onSearchTermChange={''}
+              title={
+                <>
+                  {/* {currentMarketData.marketTitle} */}
+                  Replete <Trans>pools assets</Trans>
+                </>
+              }
+              searchPlaceholder={'Search tickers or assets name'}
+            />
+          </Box>
           <Box
             sx={{
               background:
@@ -62,7 +82,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
             <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
               <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
                 <Grid container spacing={4}>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -87,6 +107,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                           ))}
                         </Box>
                       </Box>
+
                       <Box>
                         <Typography variant={'h4'}>
                           <span className="grey-text">$</span> <Trans>1,102.00</Trans>
@@ -111,7 +132,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -153,15 +174,14 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                           <Trans> Health factor</Trans>
                         </Typography>
                         <Box>
-                          <Typography variant={'h4'}>
-                            <span className="grey-text">$</span> <Trans>0.0</Trans>
-                            <span>%</span>
+                          <Typography variant={'h4'} sx={{ color: 'rgba(69, 139, 84, 1)' }}>
+                            <Trans>&#8734;</Trans>
                           </Typography>
                         </Box>
                       </Box>
                     </Box>
                   </Grid>
-                  <Grid item xs={12} lg={4} xl={4}>
+                  <Grid item xs={12} sm={6} md={6} lg={4} xl={4}>
                     <Box sx={{ textAlign: 'center' }}>
                       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Typography
@@ -214,334 +234,108 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 </Grid>
               </Box>
             </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
+
+            {filteredData.map((item) => {
+              return (
+                <>
+                  <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
+                    <Box
+                      sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}
                     >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span className="grey-text">$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
+                      <Box
+                        sx={{
+                          display: 'flex',
+                          justifyContent: 'space-between ',
+                          p: 4,
+                          alignItems: 'center',
+                        }}
+                      >
+                        <Box sx={{ display: 'flex' }}>
+                          <TokenIcon symbol={item?.symbol} sx={{ fontSize: '25px' }} />
+
+                          <Typography
+                            sx={{
+                              fontSize: '15px',
+                              fontWeight: '400',
+                              ml: 2,
+                            }}
+                          >
+                            <Trans>{item?.name}</Trans>
+                          </Typography>
+                        </Box>
+                        <Box sx={{ display: 'flex' }}>
+                          <Typography
+                            sx={{
+                              fontSize: '10px',
+                              fontWeight: '400',
+                              mr: 5,
+                            }}
+                          >
+                            <Trans>98%</Trans>
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: '10px',
+                              fontWeight: '400',
+                              mr: 5,
+                            }}
+                          >
+                            <span>$</span> <Trans>1,102.00</Trans>
+                          </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: '15px',
+                              fontWeight: '400',
+                              mr: 3,
+                            }}
+                          >
+                            <Trans>{item?.active ? 'Hide' : 'Show'}</Trans>
+                          </Typography>
+                          {/* <img
                       src="/minus-icon.png"
                       height={'4px'}
                       width={'20px'}
                       className="cursor-pointer"
                       style={{ marginTop: '9px' }}
-                    />
+                    /> */}
+                          <Typography
+                            sx={{
+                              fontSize: '15px',
+                              fontWeight: '400',
+                              mr: 3,
+                            }}
+                          >
+                            <b>{item?.active ? <Trans>&#8722;</Trans> : <Trans>&#43;</Trans>}</b>
+                          </Typography>
+                        </Box>
+                      </Box>
+                    </Box>
                   </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span>$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span>$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98%</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span>$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img
-                      src="/minus-icon.png"
-                      height={'4px'}
-                      width={'20px'}
-                      className="cursor-pointer"
-                      style={{ marginTop: '9px' }}
-                    />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
-            <Box sx={{ backgroundColor: 'rgba(0, 0, 0, 0.08)', p: 2, width: '100%' }}>
-              <Box sx={{ backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 2 }}>
-                <Box
-                  sx={{
-                    display: 'flex',
-                    justifyContent: 'space-between ',
-                    p: 4,
-                    alignItems: 'center',
-                  }}
-                >
-                  <Box sx={{ display: 'flex' }}>
-                    <img
-                      src="/icons/tokens/1inch.svg"
-                      alt="avatar"
-                      height={'20px'}
-                      width={'20px'}
-                      style={{ marginRight: '-2px' }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                      }}
-                    >
-                      <Trans>Arbitrum</Trans>
-                    </Typography>
-                  </Box>
-                  <Box sx={{ display: 'flex' }}>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <Trans>98</Trans>
-                      <span className="grey-text">%</span>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '10px',
-                        fontWeight: '400',
-                        mr: 5,
-                      }}
-                    >
-                      <span className="grey-text">$</span> <Trans>1,102.00</Trans>
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: '15px',
-                        fontWeight: '400',
-                        mr: 3,
-                      }}
-                    >
-                      <Trans>Hide</Trans>
-                    </Typography>
-                    <img className="cursor-pointer" src="/plus-icon.png" width={'20px'} />
-                  </Box>
-                </Box>
-              </Box>
-            </Box>
+                </>
+              );
+            })}
           </Box>
         </Grid>
-        <Grid item xs={12} lg={6} xl={6}>
+        <Grid item xs={12} lg={6} md={6} xl={6}>
+          <Box mb={4}>
+            {/* <ChainAvailabilityText wrapperSx={{ mb: 4 }} chainId={ChainId.mainnet} /> */}
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 4 }}>
+              <Typography variant={downToXSM ? 'h2' : upToLG ? 'display1' : 'h1'}>
+                <Trans>Liquidity application</Trans>
+              </Typography>
+            </Box>
+
+            <Typography
+              sx={{
+                color: 'rgba(243, 243, 243, 0.80)',
+                maxWidth: '824px',
+                fontSize: '14px',
+                fontWeight: '400',
+              }}
+            >
+              <Trans>Chain abstracted supply and borrow.</Trans>{' '}
+            </Typography>
+          </Box>
           <Box
             sx={{
               background:
@@ -650,7 +444,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 <Box
                   sx={{ border: '1px solid rgba(235, 235, 239, 0.08)', borderRadius: '20px', p: 2 }}
                 >
-                  <Box  sx={{ display: 'flex',justifyContent:"space-between" }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                     <Box sx={{ display: 'flex' }}>
                       <Box>
                         <Button
@@ -681,23 +475,152 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                         </Typography>
                       </Box>
                     </Box>
-                    
+
                     <Box>
-                    <Typography
-                      sx={{
-                        fontSize: '12px',
-                        fontWeight: '400',
-                      }}
-                      className="grey-text"
-                    >
-                      <Trans>$0.0k</Trans>
-                    </Typography>
-
-
+                      <Typography
+                        sx={{
+                          fontSize: '12px',
+                          fontWeight: '400',
+                        }}
+                        className="grey-text"
+                      >
+                        <Trans>$0.0k</Trans>
+                      </Typography>
                     </Box>
                   </Box>
                 </Box>
               </Box>
+            </Box>
+            
+            <Box sx={{ borderRadius: '20px', p: 2 }}>
+              <Box sx={{ p: 6 }}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                  <Box>
+                    <VariableAPYTooltip
+                      text={
+                        <Typography
+                          sx={{
+                            fontSize: '12px',
+                          }}
+                          className="grey-text"
+                        >
+                          <Trans>Supply APY</Trans>
+                        </Typography>
+                      }
+                      key="APY_list_variable_type"
+                      variant="subheader2"
+                    />
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                      }}
+                    >
+                      <Trans>98</Trans>
+                      <span className="grey-text">%</span>
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box>
+                    <VariableAPYTooltip
+                      text={
+                        <Typography
+                          sx={{
+                            fontSize: '12px',
+                          }}
+                          className="grey-text"
+                        >
+                          <Trans>Net APY</Trans>
+                        </Typography>
+                      }
+                      key="APY_list_variable_type"
+                      variant="subheader2"
+                    />
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                        color: 'rgba(69, 139, 84, 1)',
+                      }}
+                    >
+                      <Trans>+1.06%</Trans>
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box>
+                    <VariableAPYTooltip
+                      text={
+                        <Typography
+                          sx={{
+                            fontSize: '12px',
+                          }}
+                          className="grey-text"
+                        >
+                          <Trans>Collateralization</Trans>
+                        </Typography>
+                      }
+                      key="APY_list_variable_type"
+                      variant="subheader2"
+                    />
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                        color: 'rgba(69, 139, 84, 1)',
+                      }}
+                    >
+                      <Trans>Enabled</Trans>
+                    </Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', mt: 2 }}>
+                  <Box>
+                    <VariableAPYTooltip
+                      text={
+                        <Typography
+                          sx={{
+                            fontSize: '12px',
+                          }}
+                          className="grey-text"
+                        >
+                          <Trans>Health factor</Trans>
+                        </Typography>
+                      }
+                      key="APY_list_variable_type"
+                      variant="subheader2"
+                    />
+                  </Box>
+                  <Box>
+                    <Typography
+                      sx={{
+                        fontSize: '14px',
+                        fontWeight: '400',
+                        mr: 5,
+                      }}
+                    >
+                      <Typography variant={'h4'} sx={{ color: 'rgba(69, 139, 84, 1)' }}>
+                        <Trans>&#8734;</Trans>
+                      </Typography>
+                    </Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Box>
+            <Box sx={{ borderRadius: '20px', p: 2 }}>
+              <Button variant="outlined" component={Link} href={'/'} fullWidth>
+                <Trans>Supply</Trans>
+              </Button>
             </Box>
           </Box>
         </Grid>
