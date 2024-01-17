@@ -24,21 +24,12 @@ interface StakingHeaderProps {
 export const AppAssets: React.FC<StakingHeaderProps> = () => {
   const theme = useTheme();
   const upToLG = useMediaQuery(theme.breakpoints.up('lg'));
-  const downToSM = useMediaQuery(theme.breakpoints.down('sm'));
   const downToXSM = useMediaQuery(theme.breakpoints.down('xsm'));
-  const { reserves, loading } = useAppDataContext();
+  const { reserves } = useAppDataContext();
 
-  const ghoReserve = getGhoReserve(reserves);
 
   const filteredData = reserves;
-  console.log('filteredData', filteredData);
-  const data = [
-    { title: 'Arbitrum', active: true },
-    { title: 'Ethereum' },
-    { title: 'Polygon' },
-    { title: 'Optimism' },
-    { title: 'Base' },
-  ];
+  ;
   return (
     <TopInfoPanel titleComponent={<></>}>
       <Grid container spacing={4}>
@@ -50,8 +41,8 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                 <Trans>Your Assets</Trans>
               </Typography>
             </Box>
-
-            <Typography
+<Box sx={{display:'flex'}}>
+<Typography
               sx={{
                 color: 'rgba(243, 243, 243, 0.80)',
                 maxWidth: '824px',
@@ -64,13 +55,12 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
             <TitleWithSearchBar
               onSearchTermChange={''}
               title={
-                <>
-                  {/* {currentMarketData.marketTitle} */}
-                  Replete <Trans>pools assets</Trans>
-                </>
+                <></>
               }
               searchPlaceholder={'Search tickers or assets name'}
             />
+</Box>
+            
           </Box>
           <Box
             sx={{
@@ -125,7 +115,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                         </Typography>
                         <Box>
                           <Typography variant={'h4'}>
-                            <span className="grey-text">&#8744;</span> <Trans>0.0</Trans>
+                            <span className="grey-text"> {'<'}</span> <Trans>0.0</Trans>
                             <span>%</span>
                           </Typography>
                         </Box>

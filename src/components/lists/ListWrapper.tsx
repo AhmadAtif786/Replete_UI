@@ -91,8 +91,8 @@ export const ListWrapper = ({
       sx={(theme) => ({
         mt: withTopMargin ? 4 : 0,
         border: `1px solid ${theme.palette.divider}`,
-        backgroundColor:'black'
-        ,border:'none'
+        // backgroundColor:'black'
+        border:'none'
       })}
     >
       <Box

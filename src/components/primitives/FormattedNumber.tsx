@@ -53,6 +53,7 @@ function CompactNumber({ value, visibleDecimals, roundDown }: CompactNumberProps
 
   return (
     <>
+    
       {prefix}
       {postfix}
     </>
@@ -140,10 +141,13 @@ export function FormattedNumber({
       )}
 
       {!forceCompact ? (
-        new Intl.NumberFormat('en-US', {
-          maximumFractionDigits: decimals,
-          minimumFractionDigits: decimals,
-        }).format(formattedNumber)
+        <Typography sx={{color: 'rgba(69, 139, 84, 1)'}}>
+
+          {new Intl.NumberFormat('en-US', {
+            maximumFractionDigits: decimals,
+            minimumFractionDigits: decimals,
+          }).format(formattedNumber)}
+        </Typography>
       ) : (
         <CompactNumber
           value={formattedNumber}

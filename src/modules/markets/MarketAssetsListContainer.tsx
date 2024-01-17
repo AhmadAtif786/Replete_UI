@@ -82,6 +82,14 @@ export const MarketAssetsListContainer = () => {
   const displayGho: boolean = shouldDisplayGho(currentMarket, searchTerm);
 
   return (
+    
+    
+    <Box
+    sx={{background:
+      'linear-gradient(0deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.08)), linear-gradient(0deg, #080808, #080808)',
+    borderRadius: '20px',}}
+    >
+    
     <ListWrapper
       titleComponent={
         <TitleWithSearchBar
@@ -102,11 +110,11 @@ export const MarketAssetsListContainer = () => {
         </Box>
       )}
 
-      {displayGho && (
+      {/* {displayGho && (
         <Box mb={4}>
           <GhoBanner reserve={ghoReserve} />
         </Box>
-      )}
+      )} */}
 
       {/* Unfrozen assets list */}
       <MarketAssetsList reserves={unfrozenReserves} loading={loading} />
@@ -164,5 +172,5 @@ export const MarketAssetsListContainer = () => {
         />
       )}
     </ListWrapper>
-  );
+    </Box> );
 };

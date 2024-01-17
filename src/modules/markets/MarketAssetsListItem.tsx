@@ -47,11 +47,14 @@ export const MarketAssetsListItem = ({ ...reserve }: ComputedReserveData) => {
       <ListColumn isRow maxWidth={280}>
         <TokenIcon symbol={reserve.iconSymbol} fontSize="large" />
         <Box sx={{ pl: 3.5, overflow: 'hidden' }}>
-          <Typography variant="h4" noWrap>
+          <Typography v sx={{
+                            fontSize: '14px',
+                            fontWeight: '600',
+                          }} noWrap>
             {reserve.name}
           </Typography>
 
-          <Box
+          {/* <Box
             sx={{
               p: { xs: '0', xsm: '3.625px 0px' },
             }}
@@ -64,7 +67,7 @@ export const MarketAssetsListItem = ({ ...reserve }: ComputedReserveData) => {
                 </span>
               )}
             </Typography>
-          </Box>
+          </Box> */}
         </Box>
         {reserve.symbol === 'AMPL' && <AMPLToolTip />}
         {reserve.symbol === 'renFIL' && <RenFILToolTip />}
