@@ -92,7 +92,7 @@ export const ListWrapper = ({
         mt: withTopMargin ? 4 : 0,
         border: `1px solid ${theme.palette.divider}`,
         // backgroundColor:'black'
-        border:'none'
+        // border:'none'
       })}
     >
       <Box

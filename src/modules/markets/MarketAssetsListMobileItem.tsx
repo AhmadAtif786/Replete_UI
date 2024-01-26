@@ -26,6 +26,7 @@ export const MarketAssetsListMobileItem = ({ ...reserve }: ComputedReserveData) 
       underlyingAsset={reserve.underlyingAsset}
       currentMarket={currentMarket}
       isIsolated={reserve.isIsolated}
+      
     >
       <Row caption={<Trans>Total supplied</Trans>} captionVariant="description" mb={3}>
         <Box
@@ -66,6 +67,7 @@ export const MarketAssetsListMobileItem = ({ ...reserve }: ComputedReserveData) 
             alignItems: { xs: 'flex-end' },
             justifyContent: 'center',
             textAlign: 'center',
+
           }}
         >
           {Number(reserve.totalDebt) > 0 ? (
@@ -90,7 +92,7 @@ export const MarketAssetsListMobileItem = ({ ...reserve }: ComputedReserveData) 
         mb={3}
         align="flex-start"
       >
-        <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', }}>
           <IncentivesCard
             align="flex-end"
             value={Number(reserve.totalVariableDebtUSD) > 0 ? reserve.variableBorrowAPY : '-1'}

@@ -81,19 +81,15 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
 
                             fontSize: '14px',
                             fontWeight: '400',
+                            mr:1
                           }}
                         >
                           <Trans>Your balance</Trans>{' '}
                         </Typography>
-                        <Box>
-                          {[1, 1, 1, 1].map((item) => (
-                            <img
-                              src="/icons/tokens/1inch.svg"
-                              alt="avatar"
-                              height={'20px'}
-                              width={'20px'}
-                              style={{ marginRight: '-2px' }}
-                            />
+                        <Box sx={{display:'flex'}}>
+                          {["MKR", "crvUSD", "STG", ,"1INCH"].map((item) => (
+                            
+                            <TokenIcon symbol={item} sx={{ fontSize: '15px' }} />
                           ))}
                         </Box>
                       </Box>
@@ -131,19 +127,15 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
 
                             fontSize: '14px',
                             fontWeight: '400',
+                            mr:1
                           }}
                         >
                           <Trans>Your balance</Trans>{' '}
                         </Typography>
-                        <Box>
-                          {[1, 1, 1, 1].map((item) => (
-                            <img
-                              src="/icons/tokens/1inch.svg"
-                              alt="avatar"
-                              height={'20px'}
-                              width={'20px'}
-                              style={{ marginRight: '-2px' }}
-                            />
+                        <Box sx={{display:'flex'}}>
+                          {["MKR", "crvUSD", "STG", ].map((item) => (
+                            
+                            <TokenIcon symbol={item} sx={{ fontSize: '15px' }} />
                           ))}
                         </Box>
                       </Box>
@@ -180,19 +172,15 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
 
                             fontSize: '14px',
                             fontWeight: '400',
+                            mr:1
                           }}
                         >
                           <Trans>Your balance</Trans>{' '}
                         </Typography>
-                        <Box>
-                          {[1, 1, 1, 1].map((item) => (
-                            <img
-                              src="/icons/tokens/1inch.svg"
-                              alt="avatar"
-                              height={'20px'}
-                              width={'20px'}
-                              style={{ marginRight: '-2px' }}
-                            />
+                        <Box sx={{display:'flex'}}>
+                          {[, "crvUSD", ].map((item) => (
+                            
+                            <TokenIcon symbol={item} sx={{ fontSize: '15px' }} />
                           ))}
                         </Box>
                       </Box>
@@ -267,7 +255,7 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                             sx={{
                               fontSize: '10px',
                               fontWeight: '400',
-                              mr: 5,
+                              
                             }}
                           >
                             <span>$</span> <Trans>1,102.00</Trans>
@@ -277,6 +265,8 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                               fontSize: '15px',
                               fontWeight: '400',
                               mr: 3,
+                              ml:5
+
                             }}
                           >
                             <Trans>{item?.active ? 'Hide' : 'Show'}</Trans>
@@ -344,13 +334,34 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                   >
                     <Trans>Supply</Trans>
                   </Button>
-                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn">
+                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn"
+                  sx={{
+
+                    '&:hover': {
+                      backgroundColor: 'rgb(243 239 239)', // Change this to the desired hover color
+                    },
+                  }}
+                  >
                     <Trans>Borrow</Trans>
                   </Button>{' '}
-                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn">
+                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn"
+                   sx={{
+
+                    '&:hover': {
+                      backgroundColor: 'rgb(243 239 239)', // Change this to the desired hover color
+                    },
+                  }}
+                  >
                     <Trans>Repay</Trans>
                   </Button>{' '}
-                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn">
+                  <Button variant="outlined" component={Link} href={'/'} className="app-page-btn"
+                   sx={{
+
+                    '&:hover': {
+                      backgroundColor: 'rgb(243 239 239)', // Change this to the desired hover color
+                    },
+                  }}
+                  >
                     <Trans>Withdraw</Trans>
                   </Button>
                   <Box>
@@ -423,10 +434,9 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
                       sx={{
                         fontSize: '10px',
                         fontWeight: '400',
-                        mr: 5,
                       }}
                     >
-                      <Trans>Conected</Trans>
+                      <Trans>Connected</Trans>
                     </Typography>
                   </Box>
                 </Box>
@@ -608,7 +618,14 @@ export const AppAssets: React.FC<StakingHeaderProps> = () => {
               </Box>
             </Box>
             <Box sx={{ borderRadius: '20px', p: 2 }}>
-              <Button variant="outlined" component={Link} href={'/'} fullWidth>
+              <Button variant="outlined" component={Link} href={'/'} fullWidth
+              sx={{
+
+                '&:hover': {
+                  backgroundColor: 'rgb(243 239 239)', // Change this to the desired hover color
+                },
+              }}
+              >
                 <Trans>Supply</Trans>
               </Button>
             </Box>

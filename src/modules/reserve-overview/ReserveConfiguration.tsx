@@ -95,7 +95,12 @@ export const ReserveConfiguration: React.FC<ReserveConfigurationProps> = ({ rese
         ) : null}
       </Box>
 
-      <PanelRow>
+      <PanelRow
+      sx={{
+
+        backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 3  
+      }}
+      >
         <PanelTitle>Supply Info</PanelTitle>
         <SupplyInfo
           reserve={reserve}
@@ -109,8 +114,13 @@ export const ReserveConfiguration: React.FC<ReserveConfigurationProps> = ({ rese
 
       {(reserve.borrowingEnabled || Number(reserve.totalDebt) > 0) && (
         <>
-          <Divider sx={{ my: { xs: 6, sm: 10 } }} />
-          <PanelRow>
+          <Divider sx={{ my: { xs: 4, sm: 4 } }} />
+          <PanelRow 
+          sx={{
+
+            backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 3
+          }}
+          >
             <PanelTitle>Borrow info</PanelTitle>
             <Box sx={{ flexGrow: 1, minWidth: 0, maxWidth: '100%', width: '100%' }}>
               {!reserve.borrowingEnabled && (
@@ -133,18 +143,26 @@ export const ReserveConfiguration: React.FC<ReserveConfigurationProps> = ({ rese
 
       {reserve.eModeCategoryId !== 0 && (
         <>
-          <Divider sx={{ my: { xs: 6, sm: 10 } }} />
-          <ReserveEModePanel reserve={reserve} />
+          <Divider sx={{ my: { xs: 4, sm: 4 } }} />
+          <ReserveEModePanel reserve={reserve} sx={{
+
+backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 3
+}} />
         </>
       )}
 
       {(reserve.borrowingEnabled || Number(reserve.totalDebt) > 0) && (
         <>
-          <Divider sx={{ my: { xs: 6, sm: 10 } }} />
+          <Divider sx={{ my: { xs: 4, sm: 4 } }} />
 
-          <PanelRow>
+          <PanelRow
+          sx={{
+
+            backgroundColor: 'rgba(19, 19, 19, 1)', borderRadius: '20px', p: 3  
+          }}
+          >
             <PanelTitle>Interest rate model</PanelTitle>
-            <Box sx={{ flexGrow: 1, minWidth: 0, maxWidth: '100%', width: '100%' }}>
+            <Box sx={{ flexGrow: 1, minWidth: 0, maxWidth: '100%', width: '100%', }}>
               <Box
                 sx={{
                   display: 'flex',

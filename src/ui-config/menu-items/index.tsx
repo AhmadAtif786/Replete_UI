@@ -17,8 +17,8 @@ export const navigation: Navigation[] = [
   {
     link: ROUTES.app,
     title: t`App`,
-    dataCy: 'menuDashboard',
-  },
+    dataCy: 'menuApp',
+  }, 
   {
     link: ROUTES.dashboard,
     title: t`Dashboard`,

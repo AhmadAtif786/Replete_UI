@@ -102,12 +102,15 @@ export default function MarketAssetsList({ reserves, loading }: MarketAssetsList
   return (
     <>
       {!isTableChangedToCards && (
-        <ListHeaderWrapper px={6}>
+        <ListHeaderWrapper px={6}
+       
+        >
           {listHeaders.map((col) => (
             <ListColumn
               isRow={col.sortKey === 'symbol'}
               maxWidth={col.sortKey === 'symbol' ? 280 : undefined}
               key={col.sortKey}
+             
             >
               <ListHeaderTitle
                 sortName={sortName}
@@ -116,6 +119,7 @@ export default function MarketAssetsList({ reserves, loading }: MarketAssetsList
                 setSortDesc={setSortDesc}
                 sortKey={col.sortKey}
                 source="Markets Page"
+               
               >
                 {col.title}
               </ListHeaderTitle>
@@ -127,7 +131,7 @@ export default function MarketAssetsList({ reserves, loading }: MarketAssetsList
 
       {reserves.map((reserve) =>
         isTableChangedToCards ? (
-          <MarketAssetsListMobileItem {...reserve} key={reserve.id} />
+          <MarketAssetsListMobileItem {...reserve} key={reserve.id}  />
         ) : (
           <MarketAssetsListItem {...reserve} key={reserve.id} />
         )

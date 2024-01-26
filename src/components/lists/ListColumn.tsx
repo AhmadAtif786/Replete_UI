@@ -40,6 +40,7 @@ export const ListColumn = ({
         maxWidth,
         overflow: overFlow,
         padding: p,
+        
       }}
     >
       {children}

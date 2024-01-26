@@ -10,6 +10,7 @@ import { AMPLToolTip } from '../../../components/infoTooltips/AMPLToolTip';
 import { FrozenTooltip } from '../../../components/infoTooltips/FrozenTooltip';
 import { RenFILToolTip } from '../../../components/infoTooltips/RenFILToolTip';
 import { ListMobileItem } from '../../../components/lists/ListMobileItem';
+import { Box } from '@mui/material';
 
 // These are all optional due to MobileListItemLoader
 interface ListMobileItemWrapperProps {

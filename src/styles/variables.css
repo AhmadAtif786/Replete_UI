@@ -30,9 +30,15 @@ background: transparent !important;
 border: 1px solid rgba(235, 235, 239, 0.08);
 color:white;
 font-size: 14px !important;
+
+
 }
 .app-page-btn-active{
   background: rgba(243, 243, 243, 1) !important;
   color: black !important;
   
+}
+.app-page-btn:hover{
+  background: rgba(243, 243, 243, 1) !important;
+  color: black !important;
 }

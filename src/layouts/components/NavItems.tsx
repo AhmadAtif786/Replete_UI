@@ -8,6 +8,7 @@ import { Link } from '../../components/primitives/Link';
 import { useProtocolDataContext } from '../../hooks/useProtocolDataContext';
 import { navigation } from '../../ui-config/menu-items';
 import { MoreMenu } from '../MoreMenu';
+import { useRouter } from 'next/router';
 
 interface NavItemsProps {
   setOpen?: (value: boolean) => void;
@@ -16,7 +17,7 @@ interface NavItemsProps {
 export const NavItems = ({ setOpen }: NavItemsProps) => {
   const { i18n } = useLingui();
   const { currentMarketData } = useProtocolDataContext();
-
+const router=useRouter()
   const { breakpoints } = useTheme();
   const md = useMediaQuery(breakpoints.down('md'));
   const trackEvent = useRootStore((store) => store.trackEvent);
@@ -67,7 +68,7 @@ export const NavItems = ({ setOpen }: NavItemsProps) => {
                 
                 href={item.link}
                 sx={(theme) => ({
-                  color: '#777',
+                  color:   router.pathname===item.link ? "white":'#777',
                   fontWeight:'600',
                   fontSize:'16px',
                   p: '6px 8px',
@@ -85,7 +86,6 @@ export const NavItems = ({ setOpen }: NavItemsProps) => {
                     height: '2px',
                     bottom: '-6px',
                     left: '0',
-
                     background: theme.palette.gradients.aaveGradient,
                     transformOrigin: 'bottom right',
                     transition: 'transform 0.25s ease-out',
@@ -94,6 +94,7 @@ export const NavItems = ({ setOpen }: NavItemsProps) => {
                 
               >
                 {i18n._(item.title)}
+                
               </Button>
             )}
           </ListItem>
